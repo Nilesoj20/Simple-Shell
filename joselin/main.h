@@ -11,8 +11,8 @@
 #include <sys/wait.h>
 
 void ejecutar(char **av);
-char *_strcpy(char *dest, char *src);
-int _strlen(char *s);
+size_t _strlen(const char *s);
+char *_strncpy(char *dest, const char *src, size_t n);
 char *locacion(char *comando);
 char **token(char *lineptr , char **av, ssize_t num_char_read);
 #endif /*MAIN_H*/

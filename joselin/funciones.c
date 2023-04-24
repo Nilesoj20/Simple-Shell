@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * _strncpy - copia n bytes de una cadena en otra
  * @dest: cadena destino
@@ -18,6 +19,7 @@ char *_strncpy(char *dest, const char *src, size_t n)
 
 	return (dest);
 }
+
 /**
  * _strlen - longitud de una cadena
  * @s: cadena
