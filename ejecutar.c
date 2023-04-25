@@ -1,5 +1,11 @@
 #include "main.h"
 
+/**
+ * ejecutar - ejecuta el comando ingresado por el usuario
+ * @av: array de strings, donde cada string es una palabra del input
+ *
+ * Return: void
+ */
 void ejecutar(char **av)
 {
 	pid_t pid;
@@ -11,24 +17,23 @@ void ejecutar(char **av)
 	/* valido que salio bien */
 	if (pid == -1)
 	{
-		perror ("Error: fork");
+		perror("Error: fork");
 		return;
 	}
 	/* valido que fue exito*/
 	if (pid == 0)
-	 {
+	{
 		comando = av[0];
 		 /* genera la ruta path antes de pasarlo a execve*/
 		actual_comando = locacion(comando);
 		/*ejacutamos el programa y validamos si fallo*/
-	 	if (execve(actual_comando, av, NULL) == -1)
-		{
+		if (execve(actual_comando, av, NULL) == -1)
 			perror("Error: execve");
-	 	}
 		/*termina si el proceso hijo falla*/
 		exit(EXIT_FAILURE);
-	 }
-	else {
+	}
+	else
+	{
 		printf("antes del wait\n");
 		/* status se encarga de ver si el hijo termino correctamente*/
 		wait(&status);
