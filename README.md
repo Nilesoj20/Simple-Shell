@@ -7,7 +7,7 @@
 You must compile with 
 
 ```
-GCC and the following: -Wall -Wextra -Werror -pedantic -Wno-format.
+gcc -Wall -Wextra -Werror -pedantic -Wno-format.
 ``` 
 </div>
 <h2 align="rigth">It can be used: </h2>
