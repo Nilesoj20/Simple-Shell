@@ -1,0 +1,99 @@
+.TH HSH 1
+
+
+.SH NAME:
+Holberton Simple Shell.
+
+
+.SH SYNOPSIS:
+
+	for interactive mode:
+.br
+		./hsh [command] [argument]
+
+	for non-interactive mode:
+.br	
+		echo "[command] [argument]" | ./hsh
+
+.SH DESCRIPTION:
+	It is a command line interpreter that executes programs from user input. It imitates the most basic functions of a basic shell.
+
+.SH COMPILATION:
+	gcc -Wall -Wextra -Werror -pedantic -Wno-format *.c -o hsh
+
+.SH MODES:
+
+.SP
+- Interactive mode:
+	Interactive mode: It prints a prompt when executed and each time a program called by the user finishes its execution. To exit interactive mode, use the exit command.
+
+.SP
+- Non-interactive mode:
+	It receives all the arguments needed through a pipeline and finishes once the user input is executed.
+
+
+.SH EXAMPLES:
+.br
+	- Interactive mode:
+.br
+$ ls -l
+.br
+total 140
+.br
+-rw-r--r-- 1 root root   200 Apr 25 00:32 AUTHORS
+.br
+-rw-r--r-- 1 root root  1472 Apr 25 22:29 README.md
+.br
+-rw-r--r-- 1 root root  1026 Apr 25 02:21 ejecutar.c
+.br
+-rw-r--r-- 1 root root  1782 Apr 25 22:04 funciones.c
+.br
+-rwxr-xr-x 1 root root 89048 Apr 25 02:00 hsh
+.br
+-rw-r--r-- 1 root root  1513 Apr 25 00:42 locacion.c
+.br
+-rw-r--r-- 1 root root  1443 Apr 25 02:22 main.c
+.br
+-rw-r--r-- 1 root root   422 Apr 25 22:03 main.h
+.br
+-rw-r--r-- 1 root root   498 Apr 25 22:28 man_shell
+.br
+$
+.br
+.SP
+	 - Non-interactive mode:
+.br
+root@4f62d41abc5d:~/root/holbertonschool-simple_shell# echo "ls -l" | ./hsh
+.br
+total 140
+.br
+-rw-r--r-- 1 root root   200 Apr 25 00:32 AUTHORS
+.br
+-rw-r--r-- 1 root root  1472 Apr 25 22:29 README.md
+.br
+-rw-r--r-- 1 root root  1026 Apr 25 02:21 ejecutar.c
+.br
+-rw-r--r-- 1 root root  1782 Apr 25 22:04 funciones.c
+.br
+-rwxr-xr-x 1 root root 89048 Apr 25 02:00 hsh
+.br
+-rw-r--r-- 1 root root  1513 Apr 25 00:42 locacion.c
+.br
+-rw-r--r-- 1 root root  1443 Apr 25 02:22 main.c
+.br
+-rw-r--r-- 1 root root   422 Apr 25 22:03 main.h
+.br
+-rw-r--r-- 1 root root   498 Apr 25 22:28 man_shell
+.br
+root@4f62d41abc5d:~/root/holbertonschool-simple_shell#
+
+
+.SP	
+.SH CREDITS:
+	This man page is created only for our current project "Simple Shell" by Joselin Rivas, Bryan Yep and Diego Alvarado.
+.br
+Joselin Rivas @Nilesoj20
+.br
+Bryan Yep @diegosmen111
+.br
+Diego Alvarado @diegosmen111
