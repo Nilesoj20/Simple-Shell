@@ -1,40 +1,48 @@
 #include "main.h"
 
+
 void ejecutar(char **av)
 {
-	pid_t pid;
-	int status;
-	char *comando = NULL, *actual_comando = NULL;
+    pid_t hijo_pid;
+    int status;
 
-	/*creo un proceso hijo*/
-	pid = fork();
-	/* valido que salio bien */
-	if (pid == -1)
-	{
-		perror ("Error: fork");
-		return;
-	}
-	/* valido que fue exito*/
-	if (pid == 0)
-	 {
-		comando = av[0];
-		 /* genera la ruta path antes de pasarlo a execve*/
-		actual_comando = locacion(comando);
-		/*ejacutamos el programa y validamos si fallo*/
-	 	if (execve(actual_comando, av, NULL) == -1)
-		{
-			perror("Error: execve");
-	 	}
-		/*termina si el proceso hijo falla*/
-		exit(EXIT_FAILURE);
-	 }
-	else {
-		printf("antes del wait\n");
-		/* status se encarga de ver si el hijo termino correctamente*/
-		wait(&status);
-		/*obtenemos el valor de retorno del phijo y asignalo a status */
-		if (WIFEXITED(status))
-			status = WEXITSTATUS(status);
-		printf("yo soy el padre\n");
-	}
+    if (av[0] == NULL)
+    {
+        return;
+    }
+
+    if (strcmp(av[0], "exit") == 0)
+    {
+        exit(0);
+    }
+
+    if (strcmp(av[0], "env") == 0)
+    {
+        env_builtin();
+        return;
+    }
+
+    hijo_pid = fork();
+
+    if (hijo_pid == -1)
+    {
+        perror("tsh");
+        return;
+    }
+
+    if (hijo_pid == 0)
+    {
+        if (execvp(av[0], av) == -1)
+        {
+            perror("tsh");
+        }
+        exit(1);
+    }
+    else
+    {
+        do
+        {
+            waitpid(hijo_pid, &status, WUNTRACED);
+        } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+    }
 }

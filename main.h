@@ -11,6 +11,7 @@
 #include <sys/wait.h>
 
 void ejecutar(char **av);
+void env_builtin(void);
 size_t _strlen(const char *s);
 char *_strncpy(char *dest, const char *src, size_t n);
 char *locacion(char *comando);
