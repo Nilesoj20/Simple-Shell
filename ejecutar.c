@@ -25,7 +25,7 @@ void ejecutar(char **av)
 	{
 		comando = av[0];
 		 /* genera la ruta path antes de pasarlo a execve*/
-		actual_comando = locacion(comando);
+		actual_comando = buscar_ruta(comando);
 		if (actual_comando == NULL)
 		{
 			printf("Error: comando incorrecto\n");

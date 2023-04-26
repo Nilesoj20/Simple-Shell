@@ -5,7 +5,7 @@
  */
 int main(void)
 {
-	char *prompt = "Nilisoj $ ";
+	char *prompt = "Nilesoj $ ";
 	char *lineptr = NULL, **av;
 	ssize_t num_leido;
 	size_t n = 0;
