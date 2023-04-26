@@ -10,7 +10,7 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 
-void ejecutar(char **av);
+int ejecutar(char **av);
 size_t _strlen(const char *s);
 char *_strncpy(char *dest, const char *src, size_t n);
 char *buscar_ruta(char *comando);

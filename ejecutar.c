@@ -6,7 +6,7 @@
  *
  * Return: void
  */
-void ejecutar(char **av)
+int ejecutar(char **av)
 {
 	pid_t pid;
 	int status;
@@ -18,19 +18,18 @@ void ejecutar(char **av)
 	if (pid == -1)
 	{
 		perror("Error: fork");
-		return;
+		return (0);
 	}
 	/* valido que fue exito*/
 	if (pid == 0)
 	{
 		comando = av[0];
-		 /* genera la ruta path antes de pasarlo a execve*/
+		/* busca la ruta path antes de pasarlo a execve*/
 		actual_comando = buscar_ruta(comando);
 		if (actual_comando == NULL)
 		{
 			printf("Error: comando incorrecto\n");
-			return;
-		
+			return (0);	
 		}
 		/*ejacutamos el programa y validamos si fallo*/
 		if (execve(actual_comando, av, NULL) == -1)
@@ -40,6 +39,7 @@ void ejecutar(char **av)
 	{
 		/* status se encarga de ver si el hijo termino correctamente*/
 		wait(&status);
-		/*free(actual_comando);*/
+		return (0);
 	}
+	return (0);
 }

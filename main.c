@@ -29,6 +29,7 @@ int main(void)
 		{
 			free(lineptr);
 			printf("soy exit \n");
+			kill(0, SIGTERM);
 			break;
 		}
 	/* tokenizar */
