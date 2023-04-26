@@ -32,7 +32,7 @@ int ejecutar(char **av)
 			return (0);	
 		}
 		/*ejacutamos el programa y validamos si fallo*/
-		if (execve(actual_comando, av, NULL) == -1)
+		if (execve(actual_comando, av, environ) == -1)
 			perror("Error: execve");
 	}
 	else
