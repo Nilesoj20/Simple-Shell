@@ -16,7 +16,7 @@ char *locacion(char *comando)
 	/*divido el valor guardado de path con el delimitador :*/
 		path_token = strtok(path_cp, ":");
 	/*recorro path_token hasta el final*/
-		while (path_token != NULL)
+		while (path_token)
 		{
 	/* obtenemos el tamaño de path_token */
 			token_len = strlen(path_token);
