@@ -10,23 +10,23 @@ char *buscar_ruta(char *comando)
 	if (path)
 	{
 	/*hago una copia de ese valor para no modificar original*/
-		path_cp = strdup(path);
+		path_cp = _strdup(path);
 	/*obtengo el tamño del comando*/
-		comando_len = strlen(comando);
+		comando_len = _strlen(comando);
 	/*divido el valor guardado de path con el delimitador :*/
 		path_token = strtok(path_cp, ":");
 	/*recorro path_token hasta el final*/
 		while (path_token)
 		{
 	/* obtenemos el tamaño de path_token */
-			token_len = strlen(path_token);
+			token_len = _strlen(path_token);
 	/* creamos espacio donde tentra la ruta completa +2 (/ y \0)*/
 			ruta_path = malloc(comando_len + token_len + 2);
 	/* copiamos la ruta completa en file_path, luego /, el comando y el caracter nulo */
-			strcpy(ruta_path, path_token);
-			strcat(ruta_path, "/");
-			strcat(ruta_path, comando);
-			strcat(ruta_path, "\0");
+			_strcpy(ruta_path, path_token);
+			_strcat(ruta_path, "/");
+			_strcat(ruta_path, comando);
+			_strcat(ruta_path, "\0");
 	/* verificamos si la ruta es valida */
 			if (stat(ruta_path, &buffer) == 0)
 			{
