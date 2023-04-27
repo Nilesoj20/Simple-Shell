@@ -1,5 +1,10 @@
 #include "main.h"
 
+/**
+ * print_env - prints the current environment
+ *
+ * Return: void
+ */
 void print_env(void)
 {
 	pid_t ppid;
@@ -9,17 +14,14 @@ void print_env(void)
 	char buf[1024];
 
 	ppid = getppid();
-
 	ppid_str = _itoa(ppid);
 	strcat(ppid_path, ppid_str);
 	strcat(ppid_path, "/environ");
-
 	if (stat(ppid_path, &st) == -1)
 	{
 		perror("Failed stat function");
 		exit(1);
 	}
-
 	file_size = st.st_size;
 
 	ppid_fd = open(ppid_path, O_RDONLY);
@@ -38,9 +40,7 @@ void print_env(void)
 			exit(1);
 		}
 	}
-
 	free(ppid_str);
-
 	if (close(ppid_fd) == -1)
 	{
 		perror("Failed close function");
