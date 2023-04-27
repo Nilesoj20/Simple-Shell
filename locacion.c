@@ -1,4 +1,12 @@
 #include "main.h"
+
+/**
+ * locacion - busca el nombre de un comando en el PATH
+ *            y retorna la ruta absoluta de dicho comando
+ * @comando: nombre del comando
+ *
+ * Return: la ruta absoluta del programa que se quiere ejecutar
+ */
 char *locacion(char *comando)
 {
 	char *path, *path_cp, *path_token, *archivo_path;
@@ -10,23 +18,23 @@ char *locacion(char *comando)
 	if (path)
 	{
 	/*hago una copia de ese valor para no modificar original*/
-		path_cp = strdup(path);
+		path_cp = _strdup(path);
 	/*obtengo el tamño del comando*/
-		comando_len = strlen(comando);
+		comando_len = _strlen(comando);
 	/*divido el valor guardado de path con el delimitador :*/
 		path_token = strtok(path_cp, ":");
 	/*recorro path_token hasta el final*/
 		while (path_token)
 		{
 	/* obtenemos el tamaño de path_token */
-			token_len = strlen(path_token);
+			token_len = _strlen(path_token);
 	/* creamos espacio donde tentra la ruta completa +2 (/ y \0)*/
 			archivo_path = malloc(comando_len + token_len + 2);
 	/* copiamos la ruta completa en file_path, luego /, el comando y el caracter nulo */
-			strcpy(archivo_path, path_token);
-			strcat(archivo_path, "/");
-			strcat(archivo_path, comando);
-			strcat(archivo_path, "\0");
+			_strcpy(archivo_path, path_token);
+			_strcat(archivo_path, "/");
+			_strcat(archivo_path, comando);
+			_strcat(archivo_path, "\0");
 	/* verificamos si la ruta es valida */
 			if (stat(archivo_path, &buffer) == 0)
 			{
@@ -34,7 +42,8 @@ char *locacion(char *comando)
 				/*devuelve la ruta completa*/
 				return (archivo_path);
 			}
-			else {
+			else
+			{
 				/*ya no se necesita si no es valida la ruta*/
 				free(archivo_path);
 				/*pasa al siguiente token*/

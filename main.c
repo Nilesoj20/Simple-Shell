@@ -23,17 +23,14 @@ int main(void)
 	/* leo la linea con getline*/
 		num_leido = getline(&lineptr, &n, stdin);
 		if (num_leido == -1)
-		{
 			return (0);
-		}
-		if (strcmp("env\n", lineptr) == 0)
+		if (_strcmp("env\n", lineptr) == 0)
 			print_env();
 	/*Salir */
-		if (strcmp("exit\n", lineptr) == 0)
+		if (_strcmp("exit\n", lineptr) == 0)
 		{
 			free(lineptr);
-			printf("soy exit \n");
-			kill(0, SIGTERM);
+			kill(getppid(), SIGTERM);
 			break;
 		}
 	/* tokenizar */
@@ -42,5 +39,5 @@ int main(void)
 		ejecutar(av);
 		free(av);
 	}
-	return(0);
+	return (0);
 }

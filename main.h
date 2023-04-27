@@ -12,8 +12,6 @@
 #include <signal.h>
 
 int ejecutar(char **av);
-size_t _strlen(const char *s);
-char *_strncpy(char *dest, const char *src, size_t n);
 char *buscar_ruta(char *comando);
 char *_envbuilt(char *env_var);
 char **token(ssize_t num_leido, char *lineptr);
@@ -21,6 +19,10 @@ extern char **environ;
 void _sigint(int signal);
 char *_itoa(int n);
 void print_env(void);
-
+char *_strcpy(char *dest, char *src);
+int _strcmp(char *s1, char *s2);
+char *_strdup(char *str);
+char *_strcat(char *dest, char *src);
+int _strlen(char *s);
 
 #endif /*MAIN_H*/

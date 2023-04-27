@@ -22,7 +22,7 @@ char **token(ssize_t num_leido, char *lineptr)
 		perror("tsh: memory allocation error");
 		return (NULL);
 	}
-	strcpy(lineptr_cp, lineptr);
+	_strcpy(lineptr_cp, lineptr);
 	token = strtok(lineptr_cp, delim);
 	while (token != NULL)
 	{

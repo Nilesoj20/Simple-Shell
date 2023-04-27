@@ -34,7 +34,8 @@ char *buscar_ruta(char *comando)
 				/*devuelve la ruta completa*/
 				return (ruta_path);
 			}
-			else {
+			else
+			{
 				/*ya no se necesita si no es valida la ruta*/
 				free(ruta_path);
 				/*pasa al siguiente token*/

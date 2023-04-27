@@ -15,8 +15,8 @@ void print_env(void)
 
 	ppid = getppid();
 	ppid_str = _itoa(ppid);
-	strcat(ppid_path, ppid_str);
-	strcat(ppid_path, "/environ");
+	_strcat(ppid_path, ppid_str);
+	_strcat(ppid_path, "/environ");
 	if (stat(ppid_path, &st) == -1)
 	{
 		perror("Failed stat function");

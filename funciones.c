@@ -1,40 +1,53 @@
 #include "main.h"
 
 /**
- * _strlen - longitud de una cadena
- * @s: cadena
- * Return: longitud de la cadena
+ * *_strcpy - copies a string from a pointer to a buffer
+ * @dest: buffer
+ * @src:  string
+ *
+ * Return: void
  */
-size_t _strlen(const char *s)
+char *_strcpy(char *dest, char *src)
 {
-	size_t len = 0;
+	int size;
+	int i;
 
-	while (s[len] != '\0')
-		len++;
-
-	return (len);
+	size = 0;
+	while (*(src + size) != '\0')
+		size++;
+	for (i = 0; i <= size; i++)
+		*(dest + i) = src[i];
+	return (dest);
 }
 
 /**
- * *_strcat - appends an string to another string
- * @dest: original string
- * @src: string to be appended
+ * _strcmp - compares two strings
+ * @s1: string 1
+ * @s2: string 2
  *
- * Return: char
+ * Return: int
  */
-char *_strcat(char *dest, char *src)
+int _strcmp(char *s1, char *s2)
 {
-	int i = 0;
-	int n = 0;
+	int i, size1, size2, r;
 
-	while (*(dest + i) != '\0')
-		i++;
-	while (*(src + n) != '\0')
+	size1 = 0;
+	size2 = 0;
+
+	for (i = 0; s1[i] != '\0'; i++)
+		size1++;
+	for (i = 0; s2[i] != '\0'; i++)
+		size2++;
+	for (i = 0; s1[i] == s2[i]; i++)
 	{
-		dest[i + n] = src[n];
-		n++;
+		if (i >= size1 || i >= size2)
+			break;
 	}
-	return (dest);
+	if ((s1[i] > s2[i]) || (s1[i] < s2[i]))
+		r = (s1[i] - s2[i]);
+	else
+		r = 0;
+	return (r);
 }
 
 /**
@@ -65,53 +78,45 @@ char *_strdup(char *str)
 }
 
 /**
- * _strcmp - compares two strings
-i* @s1: string 1
- * @s2: string 2
+ * *_strcat - appends an string to another string
+ * @dest: original string
+ * @src: string to be appended
  *
- * Return: int
+ * Return: char
  */
-int _strcmp(char *s1, char *s2)
+char *_strcat(char *dest, char *src)
 {
-	int i, size1, size2, r;
+	int i = 0;
+	int n = 0;
 
-	size1 = 0;
-	size2 = 0;
-
-	for (i = 0; s1[i] != '\0'; i++)
-		size1++;
-	for (i = 0; s2[i] != '\0'; i++)
-		size2++;
-	for (i = 0; s1[i] == s2[i]; i++)
+	while (*(dest + i) != '\0')
+		i++;
+	while (*(src + n) != '\0')
 	{
-		if (i >= size1 || i >= size2)
-			break;
+		dest[i + n] = src[n];
+		n++;
 	}
-	if ((s1[i] > s2[i]) || (s1[i] < s2[i]))
-		r = (s1[i] - s2[i]);
-	else
-		r = 0;
-	return (r);
+	return (dest);
 }
 
 /**
- * *_strcpy - copies a string from a pointer to a buffer
- * @dest: buffer
- * @src:  string
+ * _strlen - returns the length of a string
+ * @s: string
  *
- * Return: void
+ * Return: length of the string
  */
-char *_strcpy(char *dest, char *src)
+int _strlen(char *s)
 {
-	int size;
-	int i;
+	int i = *s;
+	int count = 0;
 
-	size = 0;
-	while (*(src + size) != '\0')
-		size++;
-	for (i = 0; i <= size; i++)
+	while (i != 0)
 	{
-		*(dest + i) = src[i];
+		i = *s++;
+		count++;
 	}
-	return (dest);
+	if (count > 0)
+		return (count - 1);
+	else
+		return (count);
 }
