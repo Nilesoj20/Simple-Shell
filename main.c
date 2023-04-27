@@ -10,7 +10,8 @@ int main(void)
 	ssize_t num_leido;
 	size_t n = 0;
 	int run = 1;
-
+	
+	/*signal(2, _sigint); aqui va el codigo del signal error token*/
 
 	/* Creo un loop infinito*/
 	while (run)

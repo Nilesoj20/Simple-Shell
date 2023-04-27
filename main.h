@@ -9,6 +9,7 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <sys/wait.h>
+#include <signal.h>
 
 int ejecutar(char **av);
 size_t _strlen(const char *s);
@@ -17,4 +18,5 @@ char *buscar_ruta(char *comando);
 char *_envbuilt(char *env_var);
 char **token(ssize_t num_leido, char *lineptr);
 extern char **environ;
+void _sigint(int signal);
 #endif /*MAIN_H*/
