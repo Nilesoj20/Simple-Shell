@@ -29,7 +29,7 @@ int ejecutar(char **av)
 		if (actual_comando == NULL)
 		{
 			printf("Error: comando incorrecto\n");
-			return (0);	
+			return (0);
 		}
 		/*ejacutamos el programa y validamos si fallo*/
 		if (execve(actual_comando, av, environ) == -1)
