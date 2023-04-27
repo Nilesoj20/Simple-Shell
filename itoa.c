@@ -1,6 +1,11 @@
 #include "main.h"
 
-
+/**
+ * _itoa - converts an integer to a string
+ * @n: integer
+ *
+ * Return: integer converted to string
+ */
 char *_itoa(int n)
 {
 	char *buffer;
