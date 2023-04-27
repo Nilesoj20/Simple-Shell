@@ -19,4 +19,8 @@ char *_envbuilt(char *env_var);
 char **token(ssize_t num_leido, char *lineptr);
 extern char **environ;
 void _sigint(int signal);
+char *_itoa(int n);
+void print_env(void);
+
+
 #endif /*MAIN_H*/

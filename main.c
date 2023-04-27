@@ -26,6 +26,8 @@ int main(void)
 		{
 			return (0);
 		}
+		if (strcmp("env\n", lineptr) == 0)
+			print_env();
 	/*Salir */
 		if (strcmp("exit\n", lineptr) == 0)
 		{
