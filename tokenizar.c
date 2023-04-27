@@ -1,4 +1,13 @@
 #include "main.h"
+/**
+ * token - splits an array into words separated
+ *         b a delimiter character
+ * @num_leido: size of the string
+ * @lineptr: string to be splitted into words
+ *
+ * Return: an array of strings where each string
+ *         is a different word
+ */
 char **token(ssize_t num_leido, char *lineptr)
 {
 	char *lineptr_cp = NULL;
@@ -15,7 +24,8 @@ char **token(ssize_t num_leido, char *lineptr)
 	}
 	strcpy(lineptr_cp, lineptr);
 	token = strtok(lineptr_cp, delim);
-	while (token != NULL){
+	while (token != NULL)
+	{
 		num_tokens++;
 		token = strtok(NULL, delim);
 	}
@@ -27,7 +37,8 @@ char **token(ssize_t num_leido, char *lineptr)
 		return (NULL);
 	}
 	token = strtok(lineptr, delim);
-	for (i = 0; token != NULL; i++){
+	for (i = 0; token != NULL; i++)
+	{
 		av[i] = token;
 		token = strtok(NULL, delim);
 	}
