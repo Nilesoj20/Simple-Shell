@@ -30,7 +30,7 @@ int main(void)
 		if (_strcmp("exit\n", lineptr) == 0)
 		{
 			free(lineptr);
-			kill(getppid(), SIGTERM);
+			/*kill(getppid(), SIGTERM);*/
 			break;
 		}
 	/* tokenizar */
