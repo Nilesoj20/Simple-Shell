@@ -14,7 +14,7 @@ char **token(ssize_t num_leido, char *lineptr)
 	const char *delim = " \n";
 	char *token;
 	int num_tokens = 0, i = 0;
-	char **av;
+	char **av = NULL;
 
 	lineptr_cp = malloc(sizeof(char) * (num_leido + 1));
 	if (lineptr_cp == NULL)

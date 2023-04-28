@@ -6,8 +6,8 @@
 int main(void)
 {
 	char *prompt = "Nilesoj $ ";
-	char *lineptr = NULL, **av;
-	ssize_t num_leido;
+	char *lineptr = NULL, **av = NULL;
+	ssize_t num_leido = 0;
 	size_t n = 0;
 	int run = 1;
 
@@ -29,8 +29,7 @@ int main(void)
 	/*Salir */
 		if (_strcmp("exit\n", lineptr) == 0)
 		{
-			free(lineptr);
-			/*kill(getppid(), SIGTERM);*/
+			/*free(lineptr);*/
 			break;
 		}
 	/* tokenizar */
@@ -39,5 +38,7 @@ int main(void)
 		ejecutar(av);
 		free(av);
 	}
+	if (lineptr != NULL)
+		free(lineptr);
 	return (0);
 }
