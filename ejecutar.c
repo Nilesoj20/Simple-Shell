@@ -41,6 +41,7 @@ int ejecutar(char **av)
 		{
 			/* status se encarga de ver si el hijo termino correctamente*/
 			wait(&status);
+			free(actual_comando);
 			return (0);
 		}
 	}

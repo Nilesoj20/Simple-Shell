@@ -23,10 +23,8 @@ char *buscar_ruta(char *comando)
 	/* creamos espacio donde tentra la ruta completa +2 (/ y \0)*/
 			ruta_path = malloc(comando_len + token_len + 2);
 	/* copiamos la ruta completa en file_path, luego /, el comando y el caracter nulo */
-			_strcpy(ruta_path, path_token);
-			_strcat(ruta_path, "/");
-			_strcat(ruta_path, comando);
-			_strcat(ruta_path, "\0");
+			sprintf(ruta_path, "%s/%s", path_token, comando);
+			ruta_path[comando_len + token_len + 1] = '\0';
 	/* verificamos si la ruta es valida */
 			if (stat(ruta_path, &buffer) == 0)
 			{
