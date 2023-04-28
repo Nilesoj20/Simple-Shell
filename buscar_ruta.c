@@ -21,7 +21,7 @@ char *buscar_ruta(char *comando)
 	/* obtenemos el tamaño de path_token */
 			token_len = _strlen(path_token);
 	/* creamos espacio donde tentra la ruta completa +2 (/ y \0)*/
-			ruta_path = malloc(comando_len + token_len + 2);
+			ruta_path = malloc(sizeof(char) * (comando_len + token_len + 2));
 	/* copiamos la ruta completa en file_path, luego /, el comando y el caracter nulo */
 			sprintf(ruta_path, "%s/%s", path_token, comando);
 			ruta_path[comando_len + token_len + 1] = '\0';

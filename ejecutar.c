@@ -27,6 +27,7 @@ int ejecutar(char **av)
 		/* valido que salio bien */
 		if (pid == -1)
 		{
+			free(actual_comando);
 			perror("Error: fork");
 			return (0);
 		}
@@ -36,6 +37,7 @@ int ejecutar(char **av)
 			/*ejacutamos el programa y validamos si fallo*/
 			if (execve(actual_comando, av, environ) == -1)
 				perror("Error: execve");
+			free(actual_comando);
 		}
 		else
 		{
@@ -45,6 +47,5 @@ int ejecutar(char **av)
 			return (0);
 		}
 	}
-
 	return (0);
 }
