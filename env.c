@@ -19,6 +19,7 @@ void print_env(void)
 	_strcat(ppid_path, "/environ");
 	if (stat(ppid_path, &st) == -1)
 	{
+		free(ppid_str);
 		perror("Failed stat function");
 		exit(1);
 	}
@@ -27,6 +28,7 @@ void print_env(void)
 	ppid_fd = open(ppid_path, O_RDONLY);
 	if (ppid_fd == -1)
 	{
+		free(ppid_str);
 		perror("Failed open function.");
 		exit(1);
 	}
@@ -36,6 +38,7 @@ void print_env(void)
 		file_size = file_size + n;
 		if (write(STDOUT_FILENO, buf, n) != n)
 		{
+			free(ppid_str);
 			perror("Failed write function");
 			exit(1);
 		}
