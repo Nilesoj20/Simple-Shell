@@ -5,6 +5,10 @@ char *buscar_ruta(char *comando)
 	int comando_len, token_len;
 	struct stat buffer;
 
+	/* verificamos si la ruta es valida y existe en el directorio actual */
+	if (stat(comando, &buffer) == 0)
+		return (comando);
+
 	/*obtener el valor de la variable de entorno PATH*/
 	path = getenv("PATH");
 	if (path)
@@ -41,12 +45,6 @@ char *buscar_ruta(char *comando)
 			}
 		}
 		free(path_cp);
-	/* verificamos si la ruta es valida y existe en el directorio actual */
-		if (stat(comando, &buffer) == 0)
-		{
-			/*retorna el comando */
-			return (comando);
-		}
 	}
 	return (NULL);
 }
