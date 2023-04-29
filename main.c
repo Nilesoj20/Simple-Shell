@@ -22,8 +22,16 @@ int main(void)
 			printf("%s", prompt);
 	/* leo la linea con getline*/
 		num_leido = getline(&lineptr, &n, stdin);
+		if (lineptr == NULL)
+		{
+			perror("Failed malloc: main.c, línea 24");
+			return (1);
+		}
 		if (num_leido == -1)
 			return (0);
+	/*Si el input es vacío, continúa a la siguiente iteración*/
+		if (_strcmp("\n", lineptr) == 0)
+			continue;
 		if (_strcmp("env\n", lineptr) == 0)
 			print_env();
 	/*Salir */
