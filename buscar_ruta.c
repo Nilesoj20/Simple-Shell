@@ -8,7 +8,6 @@ char *buscar_ruta(char *comando)
 	/* verificamos si la ruta es valida y existe en el directorio actual */
 	if (stat(comando, &buffer) == 0)
 	{
-		ruta_path = malloc(sizeof(char) * _strlen(comando));
 		ruta_path = _strdup(comando);
 		return (ruta_path);
 	}
