@@ -29,17 +29,19 @@ int main(void)
 	/*Salir */
 		if (_strcmp("exit\n", lineptr) == 0)
 		{
-			if (lineptr != NULL)
-				free(lineptr);
+			/*if (lineptr != NULL)
+				free(lineptr);*/
 			break;
 		}
 	/* tokenizar */
 		av = token(num_leido, lineptr);
 	/* enviamos el array con los token a ejecutar */
-		/*ejecutar(av);*/
+		ejecutar(av);
 		free(av);
-		if (lineptr != NULL)
-			free(lineptr);
+		/*if (lineptr != NULL)
+			free(lineptr);*/
 	}
+	if (lineptr != NULL)
+		free(lineptr);
 	return (0);
 }
