@@ -9,7 +9,7 @@ int main(void)
 	char *lineptr = NULL, **av = NULL;
 	ssize_t num_leido = 0;
 	size_t n = 0;
-	int run = 1;
+	int i, run = 1;
 
 	/*se establece la señal SIGINT para manejar el ^C */
 	signal(2, _sigint);
@@ -29,6 +29,12 @@ int main(void)
 		}
 		if (num_leido == -1)
 			return (0);
+	/*Verifico si el input contiene solo espacios*/
+		i = 0;
+		while (lineptr[i] == ' ' && lineptr[i] != '\n')
+			i++;
+		if (lineptr[i] == '\n')
+			continue;
 	/*Si el input es vacío, continúa a la siguiente iteración*/
 		if (_strcmp("\n", lineptr) == 0)
 			continue;
