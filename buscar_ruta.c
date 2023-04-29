@@ -9,6 +9,11 @@ char *buscar_ruta(char *comando)
 	if (stat(comando, &buffer) == 0)
 	{
 		ruta_path = _strdup(comando);
+		if (ruta_path == NULL)
+		{
+			perror("Failed malloc: buscar_ruta.c, línea 11");
+			return (NULL);
+		}
 		return (ruta_path);
 	}
 
@@ -29,6 +34,13 @@ char *buscar_ruta(char *comando)
 			token_len = _strlen(path_token);
 	/* creamos espacio donde tentra la ruta completa +2 (/ y \0)*/
 			ruta_path = malloc(sizeof(char) * (comando_len + token_len + 2));
+			if (ruta_path == NULL)
+			{
+				perror("Failed malloc: buscar_ruta.c, línea 31");
+				free(path_cp);
+				return (NULL);
+			}
+
 	/* copiamos la ruta completa en file_path, luego /, el comando y el caracter nulo */
 			sprintf(ruta_path, "%s/%s", path_token, comando);
 			ruta_path[comando_len + token_len + 1] = '\0';
