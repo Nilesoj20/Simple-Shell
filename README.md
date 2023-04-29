@@ -7,7 +7,7 @@
 You must compile with 
 
 ```
-gcc -Wall -Wextra -Werror -pedantic -Wno-format.
+gcc -Wall -Wextra -Werror -pedantic -Wno-format -o hsh
 ``` 
 </div>
 <h2 align="rigth">It can be used: </h2>
@@ -26,15 +26,31 @@ $ ./hsh
  shown in the following example:
 
 ```
-echo "ls" | ./shell
+echo "ls" | ./hsh
 ```
 - Important note: <br>
 The program will exit after finishing your desired command(s). </div>
 <h2 align="rigth">Examples </h2>
 <div> Example in non-interactive mode:<br>
+ 
+```
+echo "ls" | ./hsh
+AUTHORS  buscar_ruta.c  ejecutar.c  env.c  funciones.c  hsh  itoa.c  main.c  main.h  main.h.gch  man_shell  README.md  shell  signal.c  tokenizar.c
+```
+
+<div> Example in interactive mode:<br>
 
 ```
 $ /bin/pwd
 /home/vagrant/shell
 ```
+
+```
+$ exit
+root@4f62d41abc5d:~/git/holbertonschool-simple_shell#
+```
 </div>
+<h2 align="rigth">Collaborators </h2>
+<div> Joselin Rivas <br>
+Bryan Yep <br>
+Diego Alvarado <br>
