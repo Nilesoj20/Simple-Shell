@@ -13,13 +13,14 @@ void print_env(void)
 	struct stat st;
 	char buf[1024];
 
-	ppid = getppid();
+	ppid = getpid();
 	ppid_str = _itoa(ppid);
 	_strcat(ppid_path, ppid_str);
 	_strcat(ppid_path, "/environ");
 	if (stat(ppid_path, &st) == -1)
 	{
-		free(ppid_str);
+		if (ppid_str != NULL)
+			free(ppid_str);
 		perror("Failed stat function");
 		exit(1);
 	}
