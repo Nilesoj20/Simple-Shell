@@ -32,7 +32,8 @@ char **token(ssize_t num_leido, char *lineptr)
 	av = malloc(sizeof(char *) * (num_tokens + 1));
 	if (av == NULL)
 	{
-		free(lineptr_cp);
+		if (lineptr_cp != NULL)
+			free(lineptr_cp);
 		perror("Error array av");
 		return (NULL);
 	}
@@ -43,6 +44,7 @@ char **token(ssize_t num_leido, char *lineptr)
 		token = strtok(NULL, delim);
 	}
 	av[i] = NULL;
-	free(lineptr_cp);
+	if (lineptr_cp != NULL)
+		free(lineptr_cp);
 	return (av);
 }
