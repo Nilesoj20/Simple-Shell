@@ -1,13 +1,17 @@
 #include "main.h"
 char *buscar_ruta(char *comando)
 {
-	char *path, *path_cp, *path_token, *ruta_path;
-	int comando_len, token_len;
+	char *path = NULL, *path_cp = NULL, *path_token = NULL, *ruta_path = NULL;
+	int comando_len = 0, token_len = 0;
 	struct stat buffer;
 
 	/* verificamos si la ruta es valida y existe en el directorio actual */
 	if (stat(comando, &buffer) == 0)
-		return (comando);
+	{
+		ruta_path = malloc(sizeof(char) * _strlen(comando));
+		ruta_path = _strdup(comando);
+		return (ruta_path);
+	}
 
 	/*obtener el valor de la variable de entorno PATH*/
 	path = getenv("PATH");
