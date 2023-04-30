@@ -38,8 +38,8 @@ int main(void)
 	/*Si el input es vacío, continúa a la siguiente iteración*/
 		if (_strcmp("\n", lineptr) == 0)
 			continue;
-		if (_strcmp("env\n", lineptr) == 0)
-			print_env();
+		/*if (_strcmp("env\n", lineptr) == 0)
+			print_env();*/
 	/*Salir */
 		if (_strcmp("exit\n", lineptr) == 0)
 		{
