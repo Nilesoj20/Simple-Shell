@@ -5,7 +5,7 @@
  */
 int main(void)
 {
-	char *prompt = "$ ";
+	char *prompt = "Nilesoj $ ";
 	char *lineptr = NULL, **av = NULL;
 	ssize_t num_leido = 0;
 	size_t n = 0;
@@ -25,7 +25,7 @@ int main(void)
 		if (lineptr == NULL)
 		{
 			perror("Failed malloc: main.c, línea 24");
-			exit(2);
+			return (1);
 		}
 		if (num_leido == -1)
 			return (0);
@@ -52,6 +52,8 @@ int main(void)
 	/* enviamos el array con los token a ejecutar */
 		ejecutar(av);
 		free(av);
+		/*if (lineptr != NULL)
+			free(lineptr);*/
 	}
 	if (lineptr != NULL)
 		free(lineptr);
