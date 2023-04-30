@@ -38,11 +38,15 @@ int main(void)
 	/*Si el input es vacío, continúa a la siguiente iteración*/
 		if (_strcmp("\n", lineptr) == 0)
 			continue;
-		/*if (_strcmp("env\n", lineptr) == 0)
-			print_env();*/
+		if (_strcmp("env\n", lineptr) == 0)
+			print_env();
 	/*Salir */
 		if (_strcmp("exit\n", lineptr) == 0)
+		{
+			/*if (lineptr != NULL)
+				free(lineptr);*/
 			break;
+		}
 	/* tokenizar */
 		av = token(num_leido, lineptr);
 	/* enviamos el array con los token a ejecutar */
