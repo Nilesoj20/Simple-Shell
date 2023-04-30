@@ -25,7 +25,7 @@ int main(void)
 		if (lineptr == NULL)
 		{
 			perror("Failed malloc: main.c, línea 24");
-			return (1);
+			exit(2);
 		}
 		if (num_leido == -1)
 			return (0);
@@ -42,18 +42,12 @@ int main(void)
 			print_env();
 	/*Salir */
 		if (_strcmp("exit\n", lineptr) == 0)
-		{
-			/*if (lineptr != NULL)
-				free(lineptr);*/
 			break;
-		}
 	/* tokenizar */
 		av = token(num_leido, lineptr);
 	/* enviamos el array con los token a ejecutar */
 		ejecutar(av);
 		free(av);
-		/*if (lineptr != NULL)
-			free(lineptr);*/
 	}
 	if (lineptr != NULL)
 		free(lineptr);

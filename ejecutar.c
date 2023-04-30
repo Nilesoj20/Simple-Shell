@@ -16,10 +16,7 @@ int ejecutar(char **av)
 	/* busca la ruta path antes de pasarlo a execve*/
 	actual_comando = buscar_ruta(comando);
 	if (actual_comando == NULL)
-	{
 		printf("Error: comando incorrecto\n");
-		return (0);
-	}
 	else
 	{
 		/*creo un proceso hijo*/
@@ -30,14 +27,17 @@ int ejecutar(char **av)
 			if (actual_comando != NULL)
 				free(actual_comando);
 			perror("Error: fork");
-			return (0);
+			exit(2);
 		}
 		/* valido que fue exito*/
 		if (pid == 0)
 		{
 			/*ejacutamos el programa y validamos si fallo*/
 			if (execve(actual_comando, av, environ) == -1)
+			{
 				perror("Error: execve");
+				exit(2);
+			}
 			if (actual_comando != NULL)
 				free(actual_comando);
 		}
