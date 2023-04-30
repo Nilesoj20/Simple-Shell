@@ -20,10 +20,7 @@ int ejecutar(char **av)
 		return (0);
 	}
 	if (comando == NULL)
-	{
 		printf("Error: comando incorrecto\n");
-		return (0);
-	}
 	else
 	{
 		/*creo un proceso hijo*/
@@ -32,7 +29,7 @@ int ejecutar(char **av)
 		if (pid == -1)
 		{
 			perror("Error: fork");
-			return (0);
+			exit(2);
 		}
 		/* valido que fue exito*/
 		if (pid == 0)
@@ -45,8 +42,6 @@ int ejecutar(char **av)
 		{
 			/* status se encarga de ver si el hijo termino correctamente*/
 			wait(&status);
-			/*if (actual_comando != NULL)
-				free(actual_comando);*/
 			return (0);
 		}
 	}
