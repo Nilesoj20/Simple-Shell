@@ -9,7 +9,7 @@
 int ejecutar(char **av)
 {
 	pid_t pid;
-	int status;
+	int status, exit_status = 0;
 	char *comando = NULL, *actual_comando = NULL;
 
 	comando = av[0];
@@ -30,7 +30,8 @@ int ejecutar(char **av)
 			if (actual_comando != NULL)
 				free(actual_comando);
 			perror("Error: fork");
-			return (0);
+			printf("pid = %d\n", pid);
+			return (2);
 		}
 		/* valido que fue exito*/
 		if (pid == 0)
@@ -40,15 +41,20 @@ int ejecutar(char **av)
 				perror("Error: execve");
 			if (actual_comando != NULL)
 				free(actual_comando);
+			wait(&status);
+			if (WIFEXITED(status))
+				exit_status = WEXITSTATUS(status);
 		}
 		else
 		{
 			/* status se encarga de ver si el hijo termino correctamente*/
 			wait(&status);
+			if (WIFEXITED(status))
+				exit_status = WEXITSTATUS(status);
 			if (actual_comando != NULL)
 				free(actual_comando);
-			return (0);
+			return (exit_status);
 		}
 	}
-	return (0);
+	return (exit_status);
 }

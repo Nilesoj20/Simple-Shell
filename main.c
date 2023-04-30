@@ -1,4 +1,5 @@
 #include "main.h"
+
 /**
  * main - main function
  * Return: Always 0.
@@ -9,7 +10,7 @@ int main(void)
 	char *lineptr = NULL, **av = NULL;
 	ssize_t num_leido = 0;
 	size_t n = 0;
-	int i, run = 1;
+	int i, exit_status, run = 1;
 
 	/*se establece la señal SIGINT para manejar el ^C */
 	signal(2, _sigint);
@@ -50,12 +51,13 @@ int main(void)
 	/* tokenizar */
 		av = token(num_leido, lineptr);
 	/* enviamos el array con los token a ejecutar */
-		ejecutar(av);
+		exit_status = ejecutar(av);
 		free(av);
 		/*if (lineptr != NULL)
 			free(lineptr);*/
 	}
 	if (lineptr != NULL)
 		free(lineptr);
-	return (0);
+	
+	return (exit_status);
 }
