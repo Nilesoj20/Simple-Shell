@@ -9,16 +9,18 @@
 int ejecutar(char **av)
 {
 	pid_t pid;
-	int status, exit_status = 0;
+	int status, flag = 0;
 	char *comando = NULL, *actual_comando = NULL;
 
 	comando = av[0];
+	if (!comando)
+		return (1);
 	/* busca la ruta path antes de pasarlo a execve*/
-	actual_comando = buscar_ruta(comando);
+	actual_comando = buscar_ruta(comando, &flag);
 	if (actual_comando == NULL)
 	{
 		printf("Error: comando incorrecto\n");
-		return (0);
+		return (1);
 	}
 	else
 	{
@@ -27,11 +29,10 @@ int ejecutar(char **av)
 		/* valido que salio bien */
 		if (pid == -1)
 		{
-			if (actual_comando != NULL)
+			if (flag == 1)
 				free(actual_comando);
 			perror("Error: fork");
-			printf("pid = %d\n", pid);
-			return (2);
+			return (0);
 		}
 		/* valido que fue exito*/
 		if (pid == 0)
@@ -39,22 +40,14 @@ int ejecutar(char **av)
 			/*ejacutamos el programa y validamos si fallo*/
 			if (execve(actual_comando, av, environ) == -1)
 				perror("Error: execve");
-			if (actual_comando != NULL)
-				free(actual_comando);
-			wait(&status);
-			if (WIFEXITED(status))
-				exit_status = WEXITSTATUS(status);
 		}
 		else
 		{
 			/* status se encarga de ver si el hijo termino correctamente*/
 			wait(&status);
-			if (WIFEXITED(status))
-				exit_status = WEXITSTATUS(status);
-			if (actual_comando != NULL)
-				free(actual_comando);
-			return (exit_status);
 		}
 	}
-	return (exit_status);
+	if (flag == 1)
+		free(actual_comando);
+	return (1);
 }

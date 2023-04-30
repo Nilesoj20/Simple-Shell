@@ -11,11 +11,12 @@
 #include <sys/wait.h>
 #include <signal.h>
 
-int ejecutar(char **av);
-char *buscar_ruta(char *comando);
-char *_envbuilt(char *env_var);
-char **token(ssize_t num_leido, char *lineptr);
 extern char **environ;
+
+int ejecutar(char **av);
+char *buscar_ruta(char *comando, int *flag);
+char *_envbuilt(char *env_var);
+char **tokenizer(char *lineptr);
 void _sigint(int signal);
 char *_itoa(int n);
 void print_env(void);

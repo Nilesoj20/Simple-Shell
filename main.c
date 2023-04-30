@@ -1,63 +1,62 @@
 #include "main.h"
 
+#define UNUSED(x) (void)(x)
+
 /**
  * main - main function
  * Return: Always 0.
  */
-int main(void)
+int main(int argc, char **argv)
 {
 	char *prompt = "Nilesoj $ ";
-	char *lineptr = NULL, **av = NULL;
+	char *lineptr = NULL, **args = NULL;
 	ssize_t num_leido = 0;
 	size_t n = 0;
-	int i, exit_status, run = 1;
+	int run = 1;
 
+	UNUSED(argc);
+	UNUSED(argv);
 	/*se establece la señal SIGINT para manejar el ^C */
-	signal(2, _sigint);
+	signal(SIGINT, _sigint);
 
 	/* Creo un loop infinito*/
 	while (run)
 	{
 	/* comando para saber si entro en modo interactivo*/
-		if (isatty(0))
+		if (isatty(STDIN_FILENO))
 			printf("%s", prompt);
 	/* leo la linea con getline*/
 		num_leido = getline(&lineptr, &n, stdin);
-		if (lineptr == NULL)
+		/*if (lineptr == NULL)
 		{
 			perror("Failed malloc: main.c, línea 24");
-			return (1);
-		}
+			return (0);
+		}*/
 		if (num_leido == -1)
 			return (0);
 	/*Verifico si el input contiene solo espacios*/
-		i = 0;
+		/*i = 0;
 		while (lineptr[i] == ' ' && lineptr[i] != '\n')
 			i++;
 		if (lineptr[i] == '\n')
-			continue;
+			continue;*/
 	/*Si el input es vacío, continúa a la siguiente iteración*/
 		if (_strcmp("\n", lineptr) == 0)
 			continue;
 		if (_strcmp("env\n", lineptr) == 0)
-			print_env();
-	/*Salir */
-		if (_strcmp("exit\n", lineptr) == 0)
 		{
-			/*if (lineptr != NULL)
-				free(lineptr);*/
-			break;
+			print_env();
+			continue;
 		}
+	/*Salir */
+		if (strcmp("exit\n", lineptr) == 0)
+			break;
 	/* tokenizar */
-		av = token(num_leido, lineptr);
+		args = tokenizer(lineptr);
 	/* enviamos el array con los token a ejecutar */
-		exit_status = ejecutar(av);
-		free(av);
-		/*if (lineptr != NULL)
-			free(lineptr);*/
+		run = ejecutar(args);
+		free(args);
 	}
-	if (lineptr != NULL)
-		free(lineptr);
-	
-	return (exit_status);
+	free(lineptr);
+	return (0);
 }
