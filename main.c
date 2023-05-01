@@ -33,7 +33,10 @@ int main(int argc, char **argv)
 			return (0);
 		}*/
 		if (num_leido == -1)
+		{
+			free(lineptr);
 			return (0);
+		}
 	/*Verifico si el input contiene solo espacios*/
 		/*i = 0;
 		while (lineptr[i] == ' ' && lineptr[i] != '\n')
