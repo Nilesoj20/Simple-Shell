@@ -5,13 +5,14 @@ char *buscar_ruta(char *comando, int *flag)
 	char *path = NULL, *path_cp = NULL, *path_token = NULL, *ruta_path = NULL;
 	int comando_len = 0, token_len = 0;
 
-	/* This is when we give full path of the command */
+	/* Le damos la ruta completa del comando */
 	if (open(comando, O_RDONLY) > 0)
 		return (comando);
 	/*obtener el valor de la variable de entorno PATH*/
 	path = getenv("PATH");
 	if (path)
 	{
+		/* copiamos path en path_cp*/
 		path_cp = _strdup(path);
 		comando_len = _strlen(comando);
 		path_token = strtok(path_cp, ":");

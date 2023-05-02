@@ -13,7 +13,8 @@ int main(int argc, char **argv)
 	ssize_t num_leido = 0;
 	size_t n = 0;
 	int run = 1;
-
+	
+	/*macro para evitar advertencia del compilador*/
 	UNUSED(argc);
 	UNUSED(argv);
 	/*se establece la señal SIGINT para manejar el ^C */
@@ -27,25 +28,15 @@ int main(int argc, char **argv)
 			printf("%s", prompt);
 	/* leo la linea con getline*/
 		num_leido = getline(&lineptr, &n, stdin);
-		/*if (lineptr == NULL)
-		{
-			perror("Failed malloc: main.c, línea 24");
-			return (0);
-		}*/
 		if (num_leido == -1)
 		{
 			free(lineptr);
 			return (0);
 		}
-	/*Verifico si el input contiene solo espacios*/
-		/*i = 0;
-		while (lineptr[i] == ' ' && lineptr[i] != '\n')
-			i++;
-		if (lineptr[i] == '\n')
-			continue;*/
 	/*Si el input es vacío, continúa a la siguiente iteración*/
 		if (_strcmp("\n", lineptr) == 0)
 			continue;
+	/*imprime built-in*/
 		if (_strcmp("env\n", lineptr) == 0)
 		{
 			print_env();

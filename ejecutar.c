@@ -9,7 +9,7 @@
 int ejecutar(char **av)
 {
 	pid_t pid;
-	int status, flag = 0;
+	int status = 0, flag = 0;
 	char *comando = NULL, *actual_comando = NULL;
 
 	comando = av[0];
@@ -47,6 +47,7 @@ int ejecutar(char **av)
 			wait(&status);
 		}
 	}
+	/* validamos si actual_comando tiene valor*/
 	if (flag == 1)
 		free(actual_comando);
 	return (1);
