@@ -1,5 +1,14 @@
 #include "main.h"
 
+/**
+ * buscar_ruta - busca un comando en el PATH
+ * @comando: comando a buscar en el PATH
+ * @flag: indicador de prevención para liberar
+ *        la variable ruta_path
+ *
+ * Return: en éxito - la ruta absoluta del comando,
+ *         en error - NULL
+ */
 char *buscar_ruta(char *comando, int *flag)
 {
 	char *path = NULL, *path_cp = NULL, *path_token = NULL, *ruta_path = NULL;
@@ -12,8 +21,9 @@ char *buscar_ruta(char *comando, int *flag)
 	path = getenv("PATH");
 	if (path)
 	{
-		/* copiamos path en path_cp*/
 		path_cp = _strdup(path);
+		if (path_cp == NULL)
+			return (NULL);
 		comando_len = _strlen(comando);
 		path_token = strtok(path_cp, ":");
 		while (path_token)
@@ -26,7 +36,6 @@ char *buscar_ruta(char *comando, int *flag)
 				free(path_cp);
 				return (NULL);
 			}
-
 			sprintf(ruta_path, "%s/%s", path_token, comando);
 			ruta_path[comando_len + token_len + 1] = '\0';
 			if (open(ruta_path, O_RDONLY) > 0)

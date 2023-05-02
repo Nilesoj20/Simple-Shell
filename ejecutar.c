@@ -6,10 +6,10 @@
  *
  * Return: void
  */
-int ejecutar(char **av)
+int ejecutar(char **av, int *status)
 {
 	pid_t pid;
-	int status = 0, flag = 0;
+	int flag = 0;
 	char *comando = NULL, *actual_comando = NULL;
 
 	comando = av[0];
@@ -19,7 +19,8 @@ int ejecutar(char **av)
 	actual_comando = buscar_ruta(comando, &flag);
 	if (actual_comando == NULL)
 	{
-		printf("Error: comando incorrecto\n");
+		perror("Error: comando incorrecto");
+		*status = 127;
 		return (1);
 	}
 	else
@@ -44,7 +45,9 @@ int ejecutar(char **av)
 		else
 		{
 			/* status se encarga de ver si el hijo termino correctamente*/
-			wait(&status);
+			wait(status);
+			if (errno != 0)
+				*status = errno;
 		}
 	}
 	/* validamos si actual_comando tiene valor*/

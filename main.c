@@ -12,7 +12,7 @@ int main(int argc, char **argv)
 	char *lineptr = NULL, **args = NULL;
 	ssize_t num_leido = 0;
 	size_t n = 0;
-	int run = 1;
+	int run = 1, status = 0;
 	
 	/*macro para evitar advertencia del compilador*/
 	UNUSED(argc);
@@ -43,14 +43,14 @@ int main(int argc, char **argv)
 			continue;
 		}
 	/*Salir */
-		if (strcmp("exit\n", lineptr) == 0)
+		if (_strcmp("exit\n", lineptr) == 0)
 			break;
 	/* tokenizar */
 		args = tokenizer(lineptr);
 	/* enviamos el array con los token a ejecutar */
-		run = ejecutar(args);
+		run = ejecutar(args, &status);
 		free(args);
 	}
 	free(lineptr);
-	return (0);
+	return (status);
 }

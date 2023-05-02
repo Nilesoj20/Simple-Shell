@@ -10,10 +10,11 @@
 #include <sys/stat.h>
 #include <sys/wait.h>
 #include <signal.h>
+#include <errno.h>
 
 extern char **environ;
 
-int ejecutar(char **av);
+int ejecutar(char **av, int *status);
 char *buscar_ruta(char *comando, int *flag);
 char *_envbuilt(char *env_var);
 char **tokenizer(char *lineptr);
